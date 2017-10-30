@@ -1,0 +1,121 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using Dapper.Contrib.Extensions;
+
+
+
+namespace tour_agenstvo
+{
+
+    public class DataBaseWork
+    {
+        
+        static public async void add_client(Clients clients)
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(stringCon))
+                {
+                    await sqlcon.OpenAsync();
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Clients] (FIO, pasport_serial, pasport_num, birthday, Registration,id_tour,summ) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @id_tour, @Summ)", sqlcon);
+                    sqlcom.Parameters.AddWithValue("FIO", clients.FIO);
+                    sqlcom.Parameters.AddWithValue("pasport_serial", clients.pasport_serial);
+                    sqlcom.Parameters.AddWithValue("pasport_num", clients.pasport_num);
+                    sqlcom.Parameters.AddWithValue("birthday", clients.birthday);
+                    sqlcom.Parameters.AddWithValue("Registration", clients.Registration);
+                    sqlcom.Parameters.AddWithValue("id_tour", clients.id_tour);
+                    sqlcom.Parameters.AddWithValue("Summ", clients.Summ);
+                    await sqlcom.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+
+        static public async void add_tour(Tours tours)
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(stringCon))
+                {
+                    await sqlcon.OpenAsync();
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Tours] (Name, Country, Sity, Hotel, Summ) values (@Name, @Country, @Sity, @Hotel, @Summ)", sqlcon);
+                    sqlcom.Parameters.AddWithValue("Name", tours.Name);
+                    sqlcom.Parameters.AddWithValue("Country", tours.Country);
+                    sqlcom.Parameters.AddWithValue("Sity", tours.Sity);
+                    sqlcom.Parameters.AddWithValue("Hotel", tours.Hotel);
+                    sqlcom.Parameters.AddWithValue("Summ", tours.Summ);
+                    await sqlcom.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+
+        static public async void add_employer(Employees employees)
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(stringCon))
+                {
+                    await sqlcon.OpenAsync();
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Employees] (FIO, pasport_serial, pasport_num, birhday, Registration,Position,Salary) values (@FIO, @pasport_serial, @pasport_num, @birhday, @Registration, @Position, @Salary)", sqlcon);
+                    sqlcom.Parameters.AddWithValue("FIO", employees.FIO);
+                    sqlcom.Parameters.AddWithValue("pasport_serial", employees.pasport_serial);
+                    sqlcom.Parameters.AddWithValue("pasport_num", employees.pasport_num);
+                    sqlcom.Parameters.AddWithValue("birhday", employees.birthday);
+                    sqlcom.Parameters.AddWithValue("Registration", employees.Registration);
+                    sqlcom.Parameters.AddWithValue("Position", employees.Position);
+                    sqlcom.Parameters.AddWithValue("Salary", employees.Salary);
+                    await sqlcom.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+
+        static public List<Tours> ReadAllTours()
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+                
+                using (SqlConnection sqlcon = new SqlConnection(stringCon))
+                {
+                    sqlcon.Open();
+                    return sqlcon.GetAll<Tours>().ToList();
+                }
+        }
+
+        static public List<Clients> ReadAllClients()
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                sqlcon.Open();
+                var AllClients = sqlcon.GetAll<Clients>().ToList();
+                return AllClients;
+            }
+        }
+        static public List<Employees> ReadAllEmployers()
+        {
+            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                sqlcon.Open();
+                return sqlcon.GetAll<Employees>().ToList();
+            }
+        }
+    }
+}
