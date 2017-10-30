@@ -11,7 +11,7 @@ namespace tour_agenstvo
     public class Tours
     {
         [Key]
-        int id_tour { get; set; }
+        public int id_tour { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public string Sity { get; set; }

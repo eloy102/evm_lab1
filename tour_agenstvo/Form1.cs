@@ -62,12 +62,13 @@ namespace tour_agenstvo
             button2.Enabled = true;
             try
             {
+                listBox1.Items.Clear();
                 List<Clients> clients = DataBaseWork.ReadAllClients();
                 List<Tours> tours = DataBaseWork.ReadAllTours();
 
                 foreach (var c in clients)
                 {
-                    listBox1.Items.Add("ID " + c.id + " ФИО " + c.FIO + " Паспортные данные " + c.pasport_serial + c.pasport_num + " Дата рождения " + c.birthday + " Тур " + c.id_tour+ " Сумма "+ c.Summ);
+                    listBox1.Items.Add("ID: " + c.id + ",  ФИО:" + c.FIO + ",  Паспортные данные:" + c.pasport_serial + c.pasport_num + ",  Дата рождения:" + c.birthday + ",  Тур:" +tours[c.id_tour-1].Name+ ",  Сумма:"+ c.Summ);
                 }
             }
             catch (Exception ex)
@@ -80,7 +81,19 @@ namespace tour_agenstvo
         {
             button1.Enabled = true;
             button2.Enabled = false;
-            List<Tours> tours = DataBaseWork.ReadAllTours();
+            try
+            {
+                listBox1.Items.Clear();
+                List<Tours> tours = DataBaseWork.ReadAllTours();
+                foreach (var t in tours)
+                {
+                    listBox1.Items.Add("ID: " +t.id_tour+",  Название:"+t.Name+",  Страна:"+t.Country+",  Город:"+t.Sity+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void добавитьToolStripMenuItem1_Click(object sender, EventArgs e)
