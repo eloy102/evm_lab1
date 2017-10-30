@@ -16,16 +16,16 @@ namespace tour_agenstvo
         public string Country { get; set; }
         public string Sity { get; set; }
         public string Hotel { get; set; }
-        public double Summ { get; set; }
+        public decimal Summ { get; set; }
         
-        public Tours(int id_tour,string name,string country, string sity,string hotel,double summ)
+        public Tours(int id_tour,string Name,string Country, string Sity,string Hotel,decimal Summ)
         {
             this.id_tour = id_tour;
-            this.Name = name;
-            this.Country = country;
-            this.Sity = sity;
-            this.Hotel = hotel;
-            this.Summ = summ;
+            this.Name = Name;
+            this.Country = Country;
+            this.Sity = Sity;
+            this.Hotel = Hotel;
+            this.Summ = Summ;
         }
     }
 }

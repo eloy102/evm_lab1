@@ -30,7 +30,7 @@ namespace tour_agenstvo
         private void button1_Click(object sender, EventArgs e)
         {
             int id = 0;
-            Tours tours = new Tours(id,textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToDouble(textBox5.Text));
+            Tours tours = new Tours(id,textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToDecimal(textBox5.Text));
             DataBaseWork.add_tour(tours);
             MessageBox.Show("Готово", "Добавлено", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

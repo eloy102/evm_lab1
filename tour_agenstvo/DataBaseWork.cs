@@ -13,10 +13,10 @@ namespace tour_agenstvo
 
     public class DataBaseWork
     {
-        
+        static public string stringCon = @"Data Source=ILYA-ПК\SQLSERVER;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=1111";
         static public async void add_client(Clients clients)
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
@@ -41,7 +41,7 @@ namespace tour_agenstvo
 
         static public async void add_tour(Tours tours)
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
@@ -64,7 +64,7 @@ namespace tour_agenstvo
 
         static public async void add_employer(Employees employees)
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
@@ -89,18 +89,19 @@ namespace tour_agenstvo
 
         static public List<Tours> ReadAllTours()
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
                 
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
                 {
                     sqlcon.Open();
-                    return sqlcon.GetAll<Tours>().ToList();
+                    var AllTours = sqlcon.GetAll<Tours>().ToList();
+                    return AllTours;
                 }
         }
 
         static public List<Clients> ReadAllClients()
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
                 sqlcon.Open();
@@ -110,12 +111,20 @@ namespace tour_agenstvo
         }
         static public List<Employees> ReadAllEmployers()
         {
-            string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
+            //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
                 sqlcon.Open();
                 return sqlcon.GetAll<Employees>().ToList();
             }
+        }
+        static public bool checkCon()
+        {
+            SqlConnection sqlcon = new SqlConnection(stringCon);
+            sqlcon.Open();
+            if (sqlcon.State == System.Data.ConnectionState.Open) return true;
+            else return false;
+            sqlcon.Close();
         }
     }
 }

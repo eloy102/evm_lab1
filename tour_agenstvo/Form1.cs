@@ -17,6 +17,7 @@ namespace tour_agenstvo
             InitializeComponent();
             timer1.Enabled = true;
             timer1.Interval = 1000;
+
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,7 +44,9 @@ namespace tour_agenstvo
         {
             timer1.Start();
             splitContainer1.Panel2.Enabled = false;
-
+            
+            toolStripStatusLabel1.Text = "Не Подключено";
+           
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -59,11 +62,13 @@ namespace tour_agenstvo
             button2.Enabled = true;
             try
             {
-                List<Clients> clients = new List<Clients>();
-                clients = DataBaseWork.ReadAllClients();
-                //listBox1.DataSource = clients;
-                dataGridView1.DataSource = clients;
-                clients[0]
+                List<Clients> clients = DataBaseWork.ReadAllClients();
+                List<Tours> tours = DataBaseWork.ReadAllTours();
+
+                foreach (var c in clients)
+                {
+                    listBox1.Items.Add("ID " + c.id + " ФИО " + c.FIO + " Паспортные данные " + c.pasport_serial + c.pasport_num + " Дата рождения " + c.birthday + " Тур " + c.id_tour+ " Сумма "+ c.Summ);
+                }
             }
             catch (Exception ex)
             {
@@ -75,6 +80,7 @@ namespace tour_agenstvo
         {
             button1.Enabled = true;
             button2.Enabled = false;
+            List<Tours> tours = DataBaseWork.ReadAllTours();
         }
 
         private void добавитьToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -104,11 +110,25 @@ namespace tour_agenstvo
             }
         }
 
-        private void просмотрToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            List<Clients> clients = new List<Clients>();
-            clients = DataBaseWork.ReadAllClients();
-            dataGridView1.DataSource = clients;
+
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                bool conState = DataBaseWork.checkCon();
+                if (conState == true) toolStripStatusLabel1.Text = "Подключено";
+                else toolStripStatusLabel1.Text = "Не Подключено";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+
+            }
         }
     }
 }
