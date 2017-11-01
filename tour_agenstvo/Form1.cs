@@ -15,11 +15,9 @@ namespace tour_agenstvo
         public Form1()
         {
             InitializeComponent();
-            timer1.Enabled = true;
             timer1.Interval = 1000;
-
         }
-
+        int flag = -1;
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -42,6 +40,7 @@ namespace tour_agenstvo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             timer1.Start();
             splitContainer1.Panel2.Enabled = false;
             
@@ -56,20 +55,30 @@ namespace tour_agenstvo
 
         private void button1_Click(object sender, EventArgs e)
         {
- 
+            flag = 1;
             splitContainer1.Panel2.Enabled = true;
             button1.Enabled = false;
             button2.Enabled = true;
             try
             {
-                listBox1.Items.Clear();
+                //listBox1.Items.Clear();
                 List<Clients> clients = DataBaseWork.ReadAllClients();
                 List<Tours> tours = DataBaseWork.ReadAllTours();
-
+                List<Clients1> clients1_list = new List<Clients1>();
+                Clients1 clients1 = new Clients1();
+               
                 foreach (var c in clients)
                 {
-                    listBox1.Items.Add("ID: " + c.id + ",  ФИО:" + c.FIO + ",  Паспортные данные:" + c.pasport_serial + c.pasport_num + ",  Дата рождения:" + c.birthday + ",  Тур:" +tours[c.id_tour-1].Name+ ",  Сумма:"+ c.Summ);
+                    clients1.ФИО = c.FIO;
+                    clients1.Серия = c.pasport_serial;
+                    clients1.Номер = c.pasport_num;
+                    clients1.Дата_Рождения = c.birthday;
+                    clients1.Прописка = c.Registration;
+                    clients1.Сумма = c.Summ;
+                    decimal summ = DataBaseWork.find_summ(c.id_tour);
+                    clients1.Сумма = summ;
                 }
+                dataGridView1.DataSource = clients1;
             }
             catch (Exception ex)
             {
@@ -79,20 +88,21 @@ namespace tour_agenstvo
 
         private void button2_Click(object sender, EventArgs e)
         {
+            flag = 2;
             button1.Enabled = true;
             button2.Enabled = false;
             try
             {
-                listBox1.Items.Clear();
+                //listBox1.Items.Clear();
                 List<Tours> tours = DataBaseWork.ReadAllTours();
-                foreach (var t in tours)
+                /*foreach (var t in tours)
                 {
-                    listBox1.Items.Add("ID: " +t.id_tour+",  Название:"+t.Name+",  Страна:"+t.Country+",  Город:"+t.Sity+
-                }
+                    listBox1.Items.Add("ID: " + t.id_tour + ",  Название:" + t.Name + ",  Страна:" + t.Country + ",  Город:" + t.Sity + ", Отель:" + t.Hotel + ", Цена:" + t.Summ);
+                }*/
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
 
@@ -109,24 +119,19 @@ namespace tour_agenstvo
             
         }
 
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (button1.Enabled==false)
+            if (flag == 1)
             {
                 Добавить_клиента f1 = new Добавить_клиента();
                 f1.ShowDialog();
             }
-            if (button2.Enabled==false)
+            if (flag==2)
             {
-                Добавить_Тур f1 = new Добавить_Тур();
-                f1.ShowDialog();
+                Добавить_Тур f2 = new Добавить_Тур();
+                f2.ShowDialog();
             }
-        }
-
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -140,7 +145,6 @@ namespace tour_agenstvo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-
             }
         }
     }

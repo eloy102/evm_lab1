@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace tour_agenstvo
 {
@@ -16,14 +18,17 @@ namespace tour_agenstvo
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             int id = 0;
             try
             {
-                Clients clients = new Clients(id,textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, Convert.ToInt32(textBox5.Text), Convert.ToDouble(textBox6.Text));
+                string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                Clients clients = new Clients(id, textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, Convert.ToInt32(s1[0]), Convert.ToDecimal(textBox6.Text));
                 DataBaseWork.add_client(clients);
+                MessageBox.Show("Готово", "Добавлено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Hide();
             }
             catch (Exception ex)
             {
@@ -33,7 +38,24 @@ namespace tour_agenstvo
 
         private void Добавить_клиента_Load(object sender, EventArgs e)
         {
+            List<Tours> tour_list = DataBaseWork.ReadAllTours();
+            foreach (var t in tour_list)
+            {
+                comboBox1.Items.Add(t.id_tour + " " + t.Name);
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            decimal summ = DataBaseWork.find_summ(Convert.ToInt32(s1[0]));
+            textBox6.Text = Convert.ToString(summ);
+            
         }
     }
 }

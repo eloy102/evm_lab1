@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dapper.Contrib.Extensions;
+using Dapper;
 
 
 
@@ -120,11 +121,25 @@ namespace tour_agenstvo
         }
         static public bool checkCon()
         {
-            SqlConnection sqlcon = new SqlConnection(stringCon);
-            sqlcon.Open();
-            if (sqlcon.State == System.Data.ConnectionState.Open) return true;
-            else return false;
-            sqlcon.Close();
+
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                sqlcon.Open();
+                if (sqlcon.State == System.Data.ConnectionState.Open) return true;
+                else return false;
+            }
         }
+
+        static public decimal find_summ(int id)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                var sql = "use tour_agenstvo" +
+                    " select id_tour,Name, Country,Sity,Hotel,Summ from Tours where id_tour=@id_tour";
+                var result = sqlcon.Query<Tours>(sql, new { id_tour = id });
+                List<Tours> list = result.ToList();
+                return list[0].Summ;
+            }
+         }
     }
 }

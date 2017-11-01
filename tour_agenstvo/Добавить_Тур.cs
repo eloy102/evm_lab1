@@ -33,6 +33,7 @@ namespace tour_agenstvo
             Tours tours = new Tours(id,textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToDecimal(textBox5.Text));
             DataBaseWork.add_tour(tours);
             MessageBox.Show("Готово", "Добавлено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Hide();
         }
     }
 }

@@ -18,9 +18,9 @@ namespace tour_agenstvo
         public string birthday { get; set; }
         public string Registration { get; set; }
         public int id_tour { get; set; }
-        public double Summ { get; set; }
+        public decimal Summ { get; set; }
 
-        public Clients(int id, string FIO, int pasport_serial, int pasport_num, string birthday, string registration, int id_tour, double summ)
+        public Clients(int id, string FIO, int pasport_serial, int pasport_num, string birthday, string registration, int id_tour, decimal summ)
         {
             this.id = id;
             this.FIO = FIO;
