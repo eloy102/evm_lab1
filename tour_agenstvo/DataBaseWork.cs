@@ -14,7 +14,8 @@ namespace tour_agenstvo
 
     public class DataBaseWork
     {
-        static public string stringCon = @"Data Source=ILYA-ПК\SQLSERVER;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=1111";
+        //static public string stringCon = @"Data Source=ILYA-ПК\SQLSERVER;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=1111";
+        static public string stringCon = @"Data Source=.\SQLEXPRESS;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=12708";
         static public async void add_client(Clients clients)
         {
             
@@ -63,7 +64,7 @@ namespace tour_agenstvo
             }
         }
 
-        static public async void add_employer(Employees employees)
+        static public async void add_employer(Employers employers)
         {
             //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             try
@@ -71,14 +72,14 @@ namespace tour_agenstvo
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
                 {
                     await sqlcon.OpenAsync();
-                    SqlCommand sqlcom = new SqlCommand("Insert into [Employees] (FIO, pasport_serial, pasport_num, birhday, Registration,Position,Salary) values (@FIO, @pasport_serial, @pasport_num, @birhday, @Registration, @Position, @Salary)", sqlcon);
-                    sqlcom.Parameters.AddWithValue("FIO", employees.FIO);
-                    sqlcom.Parameters.AddWithValue("pasport_serial", employees.pasport_serial);
-                    sqlcom.Parameters.AddWithValue("pasport_num", employees.pasport_num);
-                    sqlcom.Parameters.AddWithValue("birhday", employees.birthday);
-                    sqlcom.Parameters.AddWithValue("Registration", employees.Registration);
-                    sqlcom.Parameters.AddWithValue("Position", employees.Position);
-                    sqlcom.Parameters.AddWithValue("Salary", employees.Salary);
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Employers] (FIO, pasport_serial, pasport_num, birthday, Registration,Position,Salary) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @Position, @Salary)", sqlcon);
+                    sqlcom.Parameters.AddWithValue("FIO", employers.FIO);
+                    sqlcom.Parameters.AddWithValue("pasport_serial", employers.pasport_serial);
+                    sqlcom.Parameters.AddWithValue("pasport_num", employers.pasport_num);
+                    sqlcom.Parameters.AddWithValue("birthday", employers.birthday);
+                    sqlcom.Parameters.AddWithValue("Registration", employers.Registration);
+                    sqlcom.Parameters.AddWithValue("Position", employers.Position);
+                    sqlcom.Parameters.AddWithValue("Salary", employers.Salary);
                     await sqlcom.ExecuteNonQueryAsync();
                 }
             }
@@ -110,13 +111,13 @@ namespace tour_agenstvo
                 return AllClients;
             }
         }
-        static public List<Employees> ReadAllEmployers()
+        static public List<Employers> ReadAllEmployers()
         {
             //string stringCon = @"Data Source=.\SQLSERVER;Initial Catalog=tour_agenstvo;Integrated Security=True";
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
                 sqlcon.Open();
-                return sqlcon.GetAll<Employees>().ToList();
+                return sqlcon.GetAll<Employers>().ToList();
             }
         }
         static public bool checkCon()

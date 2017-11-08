@@ -67,18 +67,7 @@ namespace tour_agenstvo
                 List<Clients1> clients1_list = new List<Clients1>();
                 Clients1 clients1 = new Clients1();
                
-                foreach (var c in clients)
-                {
-                    clients1.ФИО = c.FIO;
-                    clients1.Серия = c.pasport_serial;
-                    clients1.Номер = c.pasport_num;
-                    clients1.Дата_Рождения = c.birthday;
-                    clients1.Прописка = c.Registration;
-                    clients1.Сумма = c.Summ;
-                    decimal summ = DataBaseWork.find_summ(c.id_tour);
-                    clients1.Сумма = summ;
-                }
-                dataGridView1.DataSource = clients1;
+                dataGridView1.DataSource = clients;
             }
             catch (Exception ex)
             {
@@ -93,12 +82,10 @@ namespace tour_agenstvo
             button2.Enabled = false;
             try
             {
-                //listBox1.Items.Clear();
+
                 List<Tours> tours = DataBaseWork.ReadAllTours();
-                /*foreach (var t in tours)
-                {
-                    listBox1.Items.Add("ID: " + t.id_tour + ",  Название:" + t.Name + ",  Страна:" + t.Country + ",  Город:" + t.Sity + ", Отель:" + t.Hotel + ", Цена:" + t.Summ);
-                }*/
+
+                dataGridView1.DataSource = tours;
             }
             catch(Exception ex)
             {
@@ -146,6 +133,12 @@ namespace tour_agenstvo
             {
                 MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
+        }
+
+        private void просмотрToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
         }
     }
 }

@@ -51,18 +51,18 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,26 +88,26 @@
             this.toolStripMenuItem2,
             this.выходToolStripMenuItem});
             this.главнаяToolStripMenuItem.Name = "главнаяToolStripMenuItem";
-            this.главнаяToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.главнаяToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.главнаяToolStripMenuItem.Text = "Главная";
             // 
             // добавитьКлиентаToolStripMenuItem
             // 
             this.добавитьКлиентаToolStripMenuItem.Name = "добавитьКлиентаToolStripMenuItem";
-            this.добавитьКлиентаToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.добавитьКлиентаToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.добавитьКлиентаToolStripMenuItem.Text = "Добавить Клиента";
             this.добавитьКлиентаToolStripMenuItem.Click += new System.EventHandler(this.добавитьКлиентаToolStripMenuItem_Click);
             // 
             // добавитьТурToolStripMenuItem
             // 
             this.добавитьТурToolStripMenuItem.Name = "добавитьТурToolStripMenuItem";
-            this.добавитьТурToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.добавитьТурToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.добавитьТурToolStripMenuItem.Text = "Добавить Тур";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(171, 6);
             // 
             // сотрудникиToolStripMenuItem
             // 
@@ -115,31 +115,32 @@
             this.добавитьToolStripMenuItem1,
             this.просмотрToolStripMenuItem1});
             this.сотрудникиToolStripMenuItem.Name = "сотрудникиToolStripMenuItem";
-            this.сотрудникиToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.сотрудникиToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.сотрудникиToolStripMenuItem.Text = "Сотрудники";
             // 
             // добавитьToolStripMenuItem1
             // 
             this.добавитьToolStripMenuItem1.Name = "добавитьToolStripMenuItem1";
-            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.добавитьToolStripMenuItem1.Text = "Добавить";
             this.добавитьToolStripMenuItem1.Click += new System.EventHandler(this.добавитьToolStripMenuItem1_Click);
             // 
             // просмотрToolStripMenuItem1
             // 
             this.просмотрToolStripMenuItem1.Name = "просмотрToolStripMenuItem1";
-            this.просмотрToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.просмотрToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.просмотрToolStripMenuItem1.Text = "Просмотр";
+            this.просмотрToolStripMenuItem1.Click += new System.EventHandler(this.просмотрToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(169, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(171, 6);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -149,25 +150,25 @@
             this.очисткаБазыКлиентовToolStripMenuItem,
             this.очисткаБазыТуровToolStripMenuItem});
             this.системаToolStripMenuItem.Name = "системаToolStripMenuItem";
-            this.системаToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.системаToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.системаToolStripMenuItem.Text = "Система";
             // 
             // очисткаБазыКлиентовToolStripMenuItem
             // 
             this.очисткаБазыКлиентовToolStripMenuItem.Name = "очисткаБазыКлиентовToolStripMenuItem";
-            this.очисткаБазыКлиентовToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.очисткаБазыКлиентовToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.очисткаБазыКлиентовToolStripMenuItem.Text = "Очистка базы клиентов";
             // 
             // очисткаБазыТуровToolStripMenuItem
             // 
             this.очисткаБазыТуровToolStripMenuItem.Name = "очисткаБазыТуровToolStripMenuItem";
-            this.очисткаБазыТуровToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.очисткаБазыТуровToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.очисткаБазыТуровToolStripMenuItem.Text = "Очистка базы туров";
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // statusStrip1
@@ -190,7 +191,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(117, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // splitContainer1
@@ -256,6 +257,17 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(450, 347);
+            this.dataGridView1.TabIndex = 1;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.DarkCyan;
@@ -283,17 +295,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(450, 347);
-            this.dataGridView1.TabIndex = 1;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,9 +318,9 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

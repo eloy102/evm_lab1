@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace tour_agenstvo
 {
     public partial class ДобавитьСотрудника : Form
@@ -26,7 +27,7 @@ namespace tour_agenstvo
         {
             try
             {
-                Employees employees = new Employees(textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, comboBox1.Text, Convert.ToDouble(textBox6.Text));
+                Employers employees = new Employers(0,textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, comboBox1.Text, Convert.ToDecimal(textBox6.Text));
                 DataBaseWork.add_employer(employees);
             }
             catch (Exception ex)
