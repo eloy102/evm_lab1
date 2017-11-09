@@ -42,20 +42,36 @@ namespace tour_agenstvo
         {
             timer1.Enabled = true;
             timer1.Start();
-            splitContainer1.Panel2.Enabled = false;
-            
+            splitContainer1.Panel2.Enabled = false;          
             toolStripStatusLabel1.Text = "Не Подключено";
-           
+            ToolTip t = new ToolTip();
+            t.SetToolTip(button1, "Отобразить базу клиентов");
+            t.SetToolTip(button2, "Отобразить базу туров");
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
            toolStripStatusLabel2.Text="Время: "+ DateTime.Now.ToLongTimeString();
+            
+            if (flag == 1)
+            {
+                List<Clients> clients = DataBaseWork.ReadAllClients();
+                dataGridView1.DataSource = clients;
+                dataGridView1.Refresh();
+            }
+            if (flag ==2 )
+            {
+                List<Tours> tours = DataBaseWork.ReadAllTours();
+                dataGridView1.DataSource = tours;
+                dataGridView1.Refresh();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             flag = 1;
+            toolStripButton1.ToolTipText = "Добавить Клиента";
             splitContainer1.Panel2.Enabled = true;
             button1.Enabled = false;
             button2.Enabled = true;
@@ -78,6 +94,7 @@ namespace tour_agenstvo
         private void button2_Click(object sender, EventArgs e)
         {
             flag = 2;
+            toolStripButton1.ToolTipText = "Добавить Тур";
             button1.Enabled = true;
             button2.Enabled = false;
             try
@@ -138,6 +155,12 @@ namespace tour_agenstvo
         private void просмотрToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2();
+            f2.ShowDialog();
+        }
+
+        private void добавитьТурToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Добавить_Тур f2 = new Добавить_Тур();
             f2.ShowDialog();
         }
     }

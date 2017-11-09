@@ -14,8 +14,8 @@ namespace tour_agenstvo
 
     public class DataBaseWork
     {
-        //static public string stringCon = @"Data Source=ILYA-ПК\SQLSERVER;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=1111";
-        static public string stringCon = @"Data Source=.\SQLEXPRESS;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=12708";
+        static public string stringCon = @"Data Source=DESKTOP-4HETE3A;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=12708";
+        //static public string stringCon = @"Data Source=.\SQLEXPRESS;Initial Catalog=tour_agenstvo;Persist Security Info=True;User ID=sa;Password=12708";
         static public async void add_client(Clients clients)
         {
             
@@ -24,13 +24,14 @@ namespace tour_agenstvo
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
                 {
                     await sqlcon.OpenAsync();
-                    SqlCommand sqlcom = new SqlCommand("Insert into [Clients] (FIO, pasport_serial, pasport_num, birthday, Registration,id_tour,summ) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @id_tour, @Summ)", sqlcon);
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Clients] (FIO, pasport_serial, pasport_num, birthday, Registration,id_tour,People,summ) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @id_tour,@People, @Summ)", sqlcon);
                     sqlcom.Parameters.AddWithValue("FIO", clients.FIO);
                     sqlcom.Parameters.AddWithValue("pasport_serial", clients.pasport_serial);
                     sqlcom.Parameters.AddWithValue("pasport_num", clients.pasport_num);
                     sqlcom.Parameters.AddWithValue("birthday", clients.birthday);
                     sqlcom.Parameters.AddWithValue("Registration", clients.Registration);
                     sqlcom.Parameters.AddWithValue("id_tour", clients.id_tour);
+                    sqlcom.Parameters.AddWithValue("People", clients.People);
                     sqlcom.Parameters.AddWithValue("Summ", clients.Summ);
                     await sqlcom.ExecuteNonQueryAsync();
                 }
@@ -142,5 +143,25 @@ namespace tour_agenstvo
                 return list[0].Summ;
             }
          }
+
+        static public void clear_tours()
+        {
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                SqlCommand sqlcom = new SqlCommand("TRUNCATE TABLE Tours", sqlcon);
+                sqlcom.ExecuteNonQueryAsync();
+            }
+
+        }
+
+        static public void clear_clients()
+        {
+            using (SqlConnection sqlcon = new SqlConnection(stringCon))
+            {
+                SqlCommand sqlcom = new SqlCommand("TRUNCATE TABLE Clients", sqlcon);
+                sqlcom.ExecuteNonQueryAsync();
+            }
+
+        }
     }
 }

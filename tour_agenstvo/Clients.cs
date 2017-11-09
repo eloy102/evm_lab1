@@ -18,9 +18,10 @@ namespace tour_agenstvo
         public string birthday { get; set; }
         public string Registration { get; set; }
         public int id_tour { get; set; }
+        public int People { get; set; }
         public decimal Summ { get; set; }
 
-        public Clients(int id, string FIO, int pasport_serial, int pasport_num, string birthday, string registration, int id_tour, decimal summ)
+        public Clients(int id, string FIO, int pasport_serial, int pasport_num, string birthday, string registration, int id_tour, int People, decimal summ)
         {
             this.id = id;
             this.FIO = FIO;
@@ -29,6 +30,7 @@ namespace tour_agenstvo
             this.birthday = birthday;
             this.Registration = registration;
             this.id_tour = id_tour;
+            this.People = People;
             this.Summ = summ;
         }
     }
