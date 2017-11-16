@@ -27,6 +27,8 @@ namespace tour_agenstvo
             ToursflowLayoutPanel5.Visible = false;
             ClientflowLayoutPanel3.Visible = false;
             OtchflowLayoutPanel4.Visible = false;
+            timer1.Enabled = true;
+            timer1.Start();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -129,6 +131,45 @@ namespace tour_agenstvo
         {
             OtchetForm otchetForm = new OtchetForm(5);
             otchetForm.Show();
+        }
+
+        private void добавитьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ДобавитьСотрудника добавитьСотрудника = new ДобавитьСотрудника();
+            добавитьСотрудника.Show();
+        }
+
+        private void добавитьКлиентаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Добавить_клиента добавить_Клиента = new Добавить_клиента();
+            добавить_Клиента.Show();
+        }
+
+        private void добавитьТурToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Добавить_Тур добавить_Тур = new Добавить_Тур();
+            добавить_Тур.Show();
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void просмотрToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OtchetForm otchetForm = new OtchetForm(5);
+            otchetForm.Show();
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Время: " + DateTime.Now.ToLongTimeString();
         }
     }
 }

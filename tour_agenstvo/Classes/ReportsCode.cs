@@ -22,14 +22,14 @@ namespace tour_agenstvo
             }
         }
 
-        static public List<Country_Clients> Coutry_clients_report(int id_tour)
+        static public List<Tours_Clients> Tours_clients_report(int id_tour)
         {
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
-                var sql = "select t.Name,c.FIO,c.Adult_Count,c.Children_Count,c.Summ" +
+                var sql = "select t.Name,c.FIO,t.Country,c.Adult_Count,c.Children_Count,c.Summ" +
                     " from Tours t , Clients c where t.id_tour = @selected_tour and c.id_tour = @selected_tour";
-                var result = sqlcon.Query<Country_Clients>(sql, new {selected_tour=id_tour } );
-                List<Country_Clients> result_list = result.ToList();
+                var result = sqlcon.Query<Tours_Clients>(sql, new {selected_tour=id_tour } );
+                List<Tours_Clients> result_list = result.ToList();
                 return result_list;
             }
         }

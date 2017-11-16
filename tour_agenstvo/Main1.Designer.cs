@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.главнаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьКлиентаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,12 +39,6 @@
             this.просмотрToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.менюОтчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -55,7 +50,6 @@
             this.ClientflowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.OtchflowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -64,14 +58,17 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.ClientflowLayoutPanel3.SuspendLayout();
             this.OtchflowLayoutPanel4.SuspendLayout();
             this.ToursflowLayoutPanel5.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -79,8 +76,7 @@
             this.menuStrip1.BackColor = System.Drawing.Color.SpringGreen;
             this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.главнаяToolStripMenuItem,
-            this.отчетыToolStripMenuItem});
+            this.главнаяToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(818, 24);
@@ -106,12 +102,14 @@
             this.добавитьКлиентаToolStripMenuItem.Name = "добавитьКлиентаToolStripMenuItem";
             this.добавитьКлиентаToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.добавитьКлиентаToolStripMenuItem.Text = "Добавить Клиента";
+            this.добавитьКлиентаToolStripMenuItem.Click += new System.EventHandler(this.добавитьКлиентаToolStripMenuItem_Click);
             // 
             // добавитьТурToolStripMenuItem
             // 
             this.добавитьТурToolStripMenuItem.Name = "добавитьТурToolStripMenuItem";
             this.добавитьТурToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.добавитьТурToolStripMenuItem.Text = "Добавить Тур";
+            this.добавитьТурToolStripMenuItem.Click += new System.EventHandler(this.добавитьТурToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -130,14 +128,16 @@
             // добавитьToolStripMenuItem1
             // 
             this.добавитьToolStripMenuItem1.Name = "добавитьToolStripMenuItem1";
-            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.добавитьToolStripMenuItem1.Text = "Добавить";
+            this.добавитьToolStripMenuItem1.Click += new System.EventHandler(this.добавитьToolStripMenuItem1_Click);
             // 
             // просмотрToolStripMenuItem1
             // 
             this.просмотрToolStripMenuItem1.Name = "просмотрToolStripMenuItem1";
-            this.просмотрToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.просмотрToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.просмотрToolStripMenuItem1.Text = "Просмотр";
+            this.просмотрToolStripMenuItem1.Click += new System.EventHandler(this.просмотрToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -149,51 +149,7 @@
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
             this.выходToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.выходToolStripMenuItem.Text = "Выход";
-            // 
-            // отчетыToolStripMenuItem
-            // 
-            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюОтчетовToolStripMenuItem,
-            this.toolStripMenuItem3});
-            this.отчетыToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
-            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.отчетыToolStripMenuItem.Text = "Отчеты";
-            // 
-            // менюОтчетовToolStripMenuItem
-            // 
-            this.менюОтчетовToolStripMenuItem.Name = "менюОтчетовToolStripMenuItem";
-            this.менюОтчетовToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.менюОтчетовToolStripMenuItem.Text = "Меню отчетов";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(167, 6);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.SpringGreen;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(818, 26);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 21);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(157, 21);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -263,6 +219,7 @@
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(193, 454);
             this.flowLayoutPanel2.TabIndex = 4;
+            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
             // 
             // button4
             // 
@@ -305,7 +262,6 @@
             this.ClientflowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ClientflowLayoutPanel3.Controls.Add(this.button7);
             this.ClientflowLayoutPanel3.Controls.Add(this.button8);
-            this.ClientflowLayoutPanel3.Controls.Add(this.button9);
             this.ClientflowLayoutPanel3.Location = new System.Drawing.Point(199, 78);
             this.ClientflowLayoutPanel3.Name = "ClientflowLayoutPanel3";
             this.ClientflowLayoutPanel3.Size = new System.Drawing.Size(222, 203);
@@ -333,16 +289,6 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Location = new System.Drawing.Point(3, 131);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(174, 58);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "Информация о клиенте";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
             // OtchflowLayoutPanel4
             // 
             this.OtchflowLayoutPanel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -350,7 +296,6 @@
             this.OtchflowLayoutPanel4.Controls.Add(this.button11);
             this.OtchflowLayoutPanel4.Controls.Add(this.button12);
             this.OtchflowLayoutPanel4.Controls.Add(this.button16);
-            this.OtchflowLayoutPanel4.Controls.Add(this.button17);
             this.OtchflowLayoutPanel4.Location = new System.Drawing.Point(199, 303);
             this.OtchflowLayoutPanel4.Name = "OtchflowLayoutPanel4";
             this.OtchflowLayoutPanel4.Size = new System.Drawing.Size(604, 143);
@@ -428,20 +373,37 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(189, 58);
             this.button16.TabIndex = 5;
-            this.button16.Text = "Отчет клиентов по странам";
+            this.button16.Text = "Отчет клиентов по турам";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
-            // button17
+            // toolStripStatusLabel2
             // 
-            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button17.Location = new System.Drawing.Point(198, 67);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(189, 58);
-            this.button17.TabIndex = 6;
-            this.button17.Text = "Отчет клиентов по турам";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 21);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(157, 21);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.SpringGreen;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(818, 26);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Main1
             // 
@@ -460,14 +422,14 @@
             this.Load += new System.EventHandler(this.Main1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.ClientflowLayoutPanel3.ResumeLayout(false);
             this.OtchflowLayoutPanel4.ResumeLayout(false);
             this.ToursflowLayoutPanel5.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,12 +447,6 @@
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem менюОтчетовToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -502,7 +458,6 @@
         private System.Windows.Forms.FlowLayoutPanel ClientflowLayoutPanel3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.FlowLayoutPanel OtchflowLayoutPanel4;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -511,6 +466,9 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
