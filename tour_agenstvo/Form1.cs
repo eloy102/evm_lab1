@@ -80,8 +80,7 @@ namespace tour_agenstvo
                 //listBox1.Items.Clear();
                 List<Clients> clients = DataBaseWork.ReadAllClients();
                 List<Tours> tours = DataBaseWork.ReadAllTours();
-                List<Clients1> clients1_list = new List<Clients1>();
-                Clients1 clients1 = new Clients1();
+
                
                 dataGridView1.DataSource = clients;
             }
@@ -140,16 +139,7 @@ namespace tour_agenstvo
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            try
-            {
-                bool conState = DataBaseWork.checkCon();
-                if (conState == true) toolStripStatusLabel1.Text = "Подключено";
-                else toolStripStatusLabel1.Text = "Не Подключено";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-            }
+            
         }
 
         private void просмотрToolStripMenuItem1_Click(object sender, EventArgs e)

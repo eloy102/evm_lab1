@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 
 namespace tour_agenstvo
+
 {
     [Table("Employers")]
     public class Employers

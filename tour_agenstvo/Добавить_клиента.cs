@@ -18,18 +18,18 @@ namespace tour_agenstvo
         {
             InitializeComponent();
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             int id = 0;
             try
             {
                 string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                Clients clients = new Clients(id, textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, Convert.ToInt32(s1[0]),Convert.ToInt32(textBox5.Text), Convert.ToDecimal(textBox6.Text));
+                Clients clients = new Clients(id, textBox1.Text, Convert.ToInt32(textBox2.Text), Convert.ToInt32(textBox3.Text), dateTimePicker1.Value.ToString(), textBox4.Text, Convert.ToInt32(s1[0]), Convert.ToInt32(textBox5.Text), Convert.ToInt32(textBox7.Text), Convert.ToDecimal(textBox6.Text));
                 DataBaseWork.add_client(clients);
                 MessageBox.Show("Готово", "Добавлено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Hide();
-                
+
             }
             catch (Exception ex)
             {
@@ -39,10 +39,17 @@ namespace tour_agenstvo
 
         private void Добавить_клиента_Load(object sender, EventArgs e)
         {
-            List<Tours> tour_list = DataBaseWork.ReadAllTours();
-            foreach (var t in tour_list)
+            try
             {
-                comboBox1.Items.Add(t.id_tour + " " + t.Name);
+                List<Tours> tour_list = DataBaseWork.ReadAllTours();
+                foreach (var t in tour_list)
+                {
+                    comboBox1.Items.Add(t.id_tour + " " + t.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -53,19 +60,29 @@ namespace tour_agenstvo
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            decimal summ = DataBaseWork.find_summ(Convert.ToInt32(s1[0]));
-            textBox6.Text = Convert.ToString(summ);
-            
+
+
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            decimal summ = DataBaseWork.find_summ(Convert.ToInt32(s1[0]));
-            if (textBox5.Text == "") textBox5.Text = "0";
-            summ *= Convert.ToInt32(textBox5.Text);
-            textBox6.Text = Convert.ToString(summ);
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)  
+        {
+            try
+            {
+                string[] s1 = comboBox1.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                List<decimal> list_summ = DataBaseWork.find_summ(Convert.ToInt32(s1[0]));
+                decimal sum = list_summ[0] * Convert.ToInt32(textBox5.Text) + list_summ[1] * Convert.ToInt32(textBox7.Text);
+                textBox6.Text = sum.ToString();
+                button1.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-using Dapper.Contrib.Extensions;
-using Dapper;
+using Dapper.Contrib.Extensions;using Dapper;
 
-
+using System.Windows.Forms;
 
 namespace tour_agenstvo
 {
@@ -24,21 +23,22 @@ namespace tour_agenstvo
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
                 {
                     await sqlcon.OpenAsync();
-                    SqlCommand sqlcom = new SqlCommand("Insert into [Clients] (FIO, pasport_serial, pasport_num, birthday, Registration,id_tour,People,summ) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @id_tour,@People, @Summ)", sqlcon);
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Clients] (FIO, pasport_serial, pasport_num, birthday, Registration,id_tour,Adult_count,Children_count,summ) values (@FIO, @pasport_serial, @pasport_num, @birthday, @Registration, @id_tour,@Adult_count,@Children_count, @Summ)", sqlcon);
                     sqlcom.Parameters.AddWithValue("FIO", clients.FIO);
                     sqlcom.Parameters.AddWithValue("pasport_serial", clients.pasport_serial);
                     sqlcom.Parameters.AddWithValue("pasport_num", clients.pasport_num);
                     sqlcom.Parameters.AddWithValue("birthday", clients.birthday);
                     sqlcom.Parameters.AddWithValue("Registration", clients.Registration);
                     sqlcom.Parameters.AddWithValue("id_tour", clients.id_tour);
-                    sqlcom.Parameters.AddWithValue("People", clients.People);
+                    sqlcom.Parameters.AddWithValue("Adult_count", clients.Adult_count);
+                    sqlcom.Parameters.AddWithValue("Children_count", clients.Children_Count);
                     sqlcom.Parameters.AddWithValue("Summ", clients.Summ);
                     await sqlcom.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -50,18 +50,19 @@ namespace tour_agenstvo
                 using (SqlConnection sqlcon = new SqlConnection(stringCon))
                 {
                     await sqlcon.OpenAsync();
-                    SqlCommand sqlcom = new SqlCommand("Insert into [Tours] (Name, Country, Sity, Hotel, Summ) values (@Name, @Country, @Sity, @Hotel, @Summ)", sqlcon);
+                    SqlCommand sqlcom = new SqlCommand("Insert into [Tours] (Name, Country, Sity, Hotel, Summ_For_Adult, Summ_For_Child) values (@Name, @Country, @Sity, @Hotel, @Summ_For_Adult,@Summ_For_Child)", sqlcon);
                     sqlcom.Parameters.AddWithValue("Name", tours.Name);
                     sqlcom.Parameters.AddWithValue("Country", tours.Country);
                     sqlcom.Parameters.AddWithValue("Sity", tours.Sity);
                     sqlcom.Parameters.AddWithValue("Hotel", tours.Hotel);
-                    sqlcom.Parameters.AddWithValue("Summ", tours.Summ);
+                    sqlcom.Parameters.AddWithValue("Summ_For_Adult", tours.Summ_For_Adult);
+                    sqlcom.Parameters.AddWithValue("Summ_For_Child", tours.Summ_For_Child);
                     await sqlcom.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,7 +87,7 @@ namespace tour_agenstvo
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -121,47 +122,33 @@ namespace tour_agenstvo
                 return sqlcon.GetAll<Employers>().ToList();
             }
         }
-        static public bool checkCon()
+       /* static public  bool checkCon()
         {
 
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
-                sqlcon.Open();
-                if (sqlcon.State == System.Data.ConnectionState.Open) return true;
-                else return false;
+                    sqlcon.Open();
+                    if (sqlcon.State == System.Data.ConnectionState.Open)
+                    {
+                        return true;
+                    }
+                    else return false; 
             }
-        }
+        }*/
 
-        static public decimal find_summ(int id)
+        static public List<decimal> find_summ(int id)
         {
             using (SqlConnection sqlcon = new SqlConnection(stringCon))
             {
                 var sql = "use tour_agenstvo" +
-                    " select id_tour,Name, Country,Sity,Hotel,Summ from Tours where id_tour=@id_tour";
+                    " select id_tour,Name, Country,Sity, Hotel,Summ_For_Adult,Summ_For_Child from Tours where id_tour=@id_tour";
                 var result = sqlcon.Query<Tours>(sql, new { id_tour = id });
                 List<Tours> list = result.ToList();
-                return list[0].Summ;
+                List<decimal> list_summ = new List<decimal> { list[0].Summ_For_Adult , list[0].Summ_For_Child };
+                return list_summ;                
             }
          }
 
-        static public void clear_tours()
-        {
-            using (SqlConnection sqlcon = new SqlConnection(stringCon))
-            {
-                SqlCommand sqlcom = new SqlCommand("TRUNCATE TABLE Tours", sqlcon);
-                sqlcom.ExecuteNonQueryAsync();
-            }
-
-        }
-
-        static public void clear_clients()
-        {
-            using (SqlConnection sqlcon = new SqlConnection(stringCon))
-            {
-                SqlCommand sqlcom = new SqlCommand("TRUNCATE TABLE Clients", sqlcon);
-                sqlcom.ExecuteNonQueryAsync();
-            }
-
-        }
+       
     }
 }
